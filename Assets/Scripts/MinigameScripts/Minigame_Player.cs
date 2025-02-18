@@ -50,6 +50,7 @@ public class Minigame_Player : MonoBehaviour
             {
                 isFly = true;
                 animator.Play("Jump", 0, 0);
+                
             }
         }
     }
