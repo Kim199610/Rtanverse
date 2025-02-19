@@ -29,6 +29,7 @@ public class PlayerController : BaseController
         {
             lookDirection = lookDirection.normalized;
         }
+        isAttacking = Input.GetMouseButton(0);
     }
 
     void OnMove(InputValue inputValue)

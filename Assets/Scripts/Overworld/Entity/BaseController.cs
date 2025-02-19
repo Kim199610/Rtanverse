@@ -18,11 +18,26 @@ public class BaseController : MonoBehaviour
     private Vector2 knockback = Vector2.zero;
     private float knockbackDuration = 0.0f;
 
+    protected StatHandler statHandler;
+
+    [SerializeField] public WeaponHandler WeaponPrefab;
+    protected WeaponHandler weaponHandler;
+
+    protected bool isAttacking;
+    private float timeSinceLastAttack = float.MaxValue;
+
     protected AnimationController animationController;
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationController = GetComponent<AnimationController>();
+        statHandler = GetComponent<StatHandler>();
+
+        if (WeaponPrefab != null)
+            weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
+        else
+            weaponHandler = GetComponentInChildren<WeaponHandler>();
+
     }
 
     protected virtual void Start()
@@ -34,6 +49,7 @@ public class BaseController : MonoBehaviour
     {
         HandleAction();
         Rotate(lookDirection);
+        HandleAttackDelay();
     }
 
     protected virtual void FixedUpdate()
@@ -79,5 +95,26 @@ public class BaseController : MonoBehaviour
     {
         knockbackDuration = duration;
         knockback = -(other.position - transform.position).normalized * power;
+    }
+    private void HandleAttackDelay()
+    {
+        if (weaponHandler == null)
+            return;
+
+        if (timeSinceLastAttack <= weaponHandler.Delay)
+        {
+            timeSinceLastAttack += Time.deltaTime;
+        }
+
+        if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+        {
+            timeSinceLastAttack = 0;
+            Attack();
+        }
+    }
+    protected virtual void Attack()
+    {
+        if (lookDirection != Vector2.zero)
+            weaponHandler?.Attack();
     }
 }
