@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class MinigameManager : MonoBehaviour
 {
     static MinigameManager minigameManager;
-    MinigameUIManager minigameUIManager;
+    public MinigameUIManager minigameUIManager;
     public static MinigameManager Instance
     {
         get { return minigameManager;}

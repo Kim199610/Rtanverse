@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class MinigameStartUI : MinigameBaseUI
 {
     [SerializeField] Button startButton;
+    [SerializeField] Button howToButton;
 
     public override void Init(MinigameUIManager UIManager)
     {
         base.Init(UIManager);
         startButton.onClick.AddListener(OnClickStartButton);
+        howToButton.onClick.AddListener(OnClickHowToButton);
     }
     protected override UIState GetUIState()
     {
@@ -22,5 +24,9 @@ public class MinigameStartUI : MinigameBaseUI
     {
         Debug.Log("clicked");
         MinigameManager.Instance.GameStart();
+    }
+    public void OnClickHowToButton()
+    {
+        MinigameManager.Instance.minigameUIManager.ChangeState(UIState.MinigameHowTo);
     }
 }

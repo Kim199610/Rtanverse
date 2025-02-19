@@ -9,13 +9,13 @@ public enum UIState
 {
     MinigameStart,
     MinigameGameOver,
-    MinigameScore,
+    MinigameHowTo,
     MinigameGame
 }
 public class MinigameUIManager : MonoBehaviour
 {
     MinigameStartUI minigameStartUI;
-    MinigameScoreUI minigameScoreUI;
+    MinigameHouToUI minigameHowtoUI;
     MinigameGameOverUI minigameGameOverUI;
     MinigameGameUI minigameGameUI;
 
@@ -37,8 +37,8 @@ public class MinigameUIManager : MonoBehaviour
         minigameStartUI.Init(this);
         minigameGameOverUI = GetComponentInChildren<MinigameGameOverUI>(true);
         minigameGameOverUI.Init(this);
-        minigameScoreUI = GetComponentInChildren<MinigameScoreUI>(true);
-        minigameScoreUI.Init(this);
+        minigameHowtoUI = GetComponentInChildren<MinigameHouToUI>(true);
+        minigameHowtoUI.Init(this);
         minigameGameUI = GetComponentInChildren<MinigameGameUI>(true);
         minigameGameUI.Init(this);
 
@@ -49,7 +49,7 @@ public class MinigameUIManager : MonoBehaviour
         currentState = state;
         minigameStartUI.SetActive(currentState);
         minigameGameUI.SetActive(currentState);
-        minigameScoreUI.SetActive(currentState);
+        minigameHowtoUI.SetActive(currentState);
         minigameGameOverUI.SetActive(currentState);
 
     }
