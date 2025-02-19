@@ -348,7 +348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &29352622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartButton: {fileID: 1047663016}
-  toMainButton: {fileID: 1209100099}
+  exitMiniGameButton: {fileID: 1209100099}
 --- !u!1 &46362266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2699,7 +2699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ToMain
+  m_text: Exit MiniGame
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2726,8 +2726,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5350,7 +5350,7 @@ GameObject:
   - component: {fileID: 1209100100}
   - component: {fileID: 1209100099}
   m_Layer: 5
-  m_Name: toMain
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12544,7 +12544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1918433428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13069,7 +13069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2092957076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13107,6 +13107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButton: {fileID: 1700262835}
   howToButton: {fileID: 922623365}
+  exitButton: {fileID: 534781330}
 --- !u!4 &2098268533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6231701655594368185, guid: 1d2100ab00212be4db937a8baeaa809a, type: 3}

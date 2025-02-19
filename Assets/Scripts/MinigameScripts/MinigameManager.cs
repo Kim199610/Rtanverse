@@ -83,4 +83,9 @@ public class MinigameManager : MonoBehaviour
         currentScore += score;
         minigameUIManager.UpdateScore(currentScore);
     }
+
+    public void ExitMinigame()
+    {
+        SceneManager.LoadScene("Overworld");
+    }
 }

@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class MinigameGameOverUI : MinigameBaseUI
 {
     [SerializeField] Button restartButton;
-    [SerializeField] Button toMainButton;
+    [SerializeField] Button exitMiniGameButton;
     public override void Init(MinigameUIManager UIManager)
     {
         base.Init(UIManager);
 
         restartButton.onClick.AddListener(OnClickRestartButton);
+        exitMiniGameButton.onClick.AddListener(OnClickExitMiniGameButton);
     }
     protected override UIState GetUIState()
     {
@@ -22,5 +23,8 @@ public class MinigameGameOverUI : MinigameBaseUI
     {
         MinigameManager.Instance.RestartGame();
     }
-
+    public void OnClickExitMiniGameButton()
+    {
+        MinigameManager.Instance.ExitMinigame();
+    }
 }
