@@ -14,6 +14,12 @@ public class MinigameObstacle : MonoBehaviour
     public Transform bottomObject;
 
     public float widthPadding = 4f;
+    MinigameManager minigameManager;
+
+    private void Start()
+    {
+        minigameManager = MinigameManager.Instance;
+    }
 
     public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
     {
@@ -28,5 +34,12 @@ public class MinigameObstacle : MonoBehaviour
         transform.position = placePosition;
 
         return placePosition;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision != null && collision.CompareTag("Player"))
+        {
+            minigameManager.AddScore(1);
+        }
     }
 }

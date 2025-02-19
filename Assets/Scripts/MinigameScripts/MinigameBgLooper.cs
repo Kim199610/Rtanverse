@@ -10,6 +10,11 @@ public class MinigameBgLooper : MonoBehaviour
 
     void Start()
     {
+        
+    }
+
+    public void SettingObstacleInStart()
+    {
         MinigameObstacle[] obstacles = GameObject.FindObjectsOfType<MinigameObstacle>();
         obstacleLastPosition = obstacles[0].transform.position;
         obstacleCount = obstacles.Length;
