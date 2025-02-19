@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MinigameGameUI : MinigameBaseUI
 {
+    
     public override void Init(MinigameUIManager UIManager)
     {
         base.Init(UIManager);
@@ -13,4 +15,6 @@ public class MinigameGameUI : MinigameBaseUI
     {
         return UIState.MinigameGame;
     }
+    
+    
 }

@@ -17,16 +17,18 @@ public class MinigameManager : MonoBehaviour
     public MinigameBgLooper minigameBgLooper;
     public Minigame_Player minigame_Player;
 
-    int currentScore = 0;
+    public int currentScore = 0;
     float delayTime = 3f;
-    Rigidbody2D playerRigidbody;
+    int bestScore;
+    
     private void Awake()
     {
         minigameManager = this;
         minigameBgLooper.SettingObstacleInStart();
         minigameUIManager = FindObjectOfType<MinigameUIManager>(true);
-        playerRigidbody = minigame_Player.GetComponent<Rigidbody2D>();
+        
         Time.timeScale = 0f;
+        bestScore = PlayerPrefs.GetInt("BestScore", 0);
     }
 
     private void Start()
@@ -38,9 +40,9 @@ public class MinigameManager : MonoBehaviour
         delayTime = delayTime > 0 ? delayTime - Time.deltaTime : 0;
         minigameUIManager.UpdateDelayTime(delayTime);
 
-        if(playerRigidbody.constraints.HasFlag(RigidbodyConstraints2D.FreezeAll) && delayTime == 0)
+        if((minigame_Player.GetComponent<Rigidbody2D>()).constraints.HasFlag(RigidbodyConstraints2D.FreezeAll) && delayTime == 0)
         {
-            playerRigidbody.constraints = RigidbodyConstraints2D.None;
+            (minigame_Player.GetComponent<Rigidbody2D>()).constraints = RigidbodyConstraints2D.None;
             
         }
     }
@@ -51,13 +53,14 @@ public class MinigameManager : MonoBehaviour
         minigameUIManager.ChangeState(UIState.MinigameGame);
         currentScore = 0;
         minigameUIManager.UpdateScore(currentScore);
+        bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        minigameUIManager.UpdateBestScore(bestScore);
 
-        minigame_Player.transform.position = Vector3.zero;
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        (minigame_Player.GetComponent<Rigidbody2D>()).constraints = RigidbodyConstraints2D.FreezeAll;
         
         delayTime = 3f;
-        Transform delayTimeCanvers = (GameObject.Find("UI")).transform.Find("GameUI/DelayTime");
-        delayTimeCanvers.gameObject.SetActive(true);
+        (GameObject.Find("UI")).transform.Find("GameUI/DelayTime").gameObject.SetActive(true);
 
         Time.timeScale = 1f;
 
@@ -66,7 +69,10 @@ public class MinigameManager : MonoBehaviour
     }
     public void GameOver()
     {
-         
+        minigameUIManager.UpdateResultScore(currentScore);
+        minigameUIManager.UpdateResultBestScore(currentScore, bestScore);
+        minigameUIManager.ChangeState(UIState.MinigameGameOver);
+
     }
     public void RestartGame()
     {

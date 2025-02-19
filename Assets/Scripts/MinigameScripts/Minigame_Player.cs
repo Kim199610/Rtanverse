@@ -5,6 +5,7 @@ using UnityEngine;
 public class Minigame_Player : MonoBehaviour
 {
     MinigameManager minigameManager;
+    public MinigameUIManager minigameUIManager;
 
     Animator animator = null;
     Rigidbody2D _rigidbody = null;
@@ -34,10 +35,8 @@ public class Minigame_Player : MonoBehaviour
         {
             if (deathCooldown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                {
-                    // 게임 재시작
-                }
+                if(minigameUIManager.currentState != UIState.MinigameGameOver)
+                    minigameManager.GameOver();
             }
             else
             {
@@ -53,6 +52,7 @@ public class Minigame_Player : MonoBehaviour
                 
             }
         }
+        forwardSpeed = 3f + (minigameManager.currentScore / 5) * 0.5f;
     }
 
     public void FixedUpdate()

@@ -19,13 +19,16 @@ public class MinigameUIManager : MonoBehaviour
     MinigameGameOverUI minigameGameOverUI;
     MinigameGameUI minigameGameUI;
 
-    [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI delayTimeText;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI bestScoreText;
+    [SerializeField] TextMeshProUGUI resultScoreText;
+    [SerializeField] TextMeshProUGUI resultBestScoreText;
 
     public MinigameManager minigameManager;
     
 
-    private UIState currentState;
+    public UIState currentState;
 
 
     private void Awake()
@@ -59,8 +62,30 @@ public class MinigameUIManager : MonoBehaviour
         delayTimeText.text = ((int)Mathf.Ceil(delayTime)).ToString();
         if(delayTime == 0)
         {
-            Transform delayTimeCanvers = transform.Find("GameUI/DelayTime");
-            delayTimeCanvers.gameObject.SetActive(false);
+            transform.Find("GameUI/DelayTime").gameObject.SetActive(false);
         }
+    }
+    public void UpdateBestScore(int bestScore)
+    {
+        bestScoreText.text = bestScore.ToString();
+    }
+
+    public void UpdateResultScore(int score)
+    {
+        resultScoreText.text = score.ToString();
+    }
+    public void UpdateResultBestScore(int score, int bestScore)
+    {
+        if (score > bestScore)
+        {
+            bestScore = score;
+            PlayerPrefs.SetInt("BestScore", bestScore);
+            transform.Find("GameOverUI/NewRecord").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.Find("GameOverUI/NewRecord").gameObject.SetActive(false);
+        }
+        resultBestScoreText.text = bestScore.ToString();
     }
 }
