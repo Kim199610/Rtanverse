@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Minigame_Player : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class Minigame_Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
+                if (EventSystem.current.IsPointerOverGameObject())
+                    return;
                 isFly = true;
                 animator.Play("Jump", 0, 0);
                 

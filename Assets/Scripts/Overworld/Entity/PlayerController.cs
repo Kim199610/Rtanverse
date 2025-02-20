@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : BaseController
@@ -29,7 +30,10 @@ public class PlayerController : BaseController
         {
             lookDirection = lookDirection.normalized;
         }
-        isAttacking = Input.GetMouseButton(0);
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        else
+            isAttacking = Input.GetMouseButton(0);
     }
 
     void OnMove(InputValue inputValue)
