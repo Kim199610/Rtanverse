@@ -80,6 +80,8 @@ public class MinigameUIManager : MonoBehaviour
         {
             bestScore = score;
             PlayerPrefs.SetInt("BestScore", bestScore);
+            PlayerPrefs.SetInt("NewBestScore", 1);
+            PlayerPrefs.Save();
             transform.Find("GameOverUI/NewRecord").gameObject.SetActive(true);
         }
         else

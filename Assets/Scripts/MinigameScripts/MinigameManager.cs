@@ -23,12 +23,15 @@ public class MinigameManager : MonoBehaviour
     
     private void Awake()
     {
+        
         minigameManager = this;
         minigameBgLooper.SettingObstacleInStart();
         minigameUIManager = FindObjectOfType<MinigameUIManager>(true);
         
         Time.timeScale = 0f;
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        
+        PlayerPrefs.Save();
     }
 
     private void Start()
@@ -49,7 +52,8 @@ public class MinigameManager : MonoBehaviour
 
     public void GameStart()
     {
-        
+        PlayerPrefs.SetInt("MinigamePlayCount", PlayerPrefs.GetInt("MinigamePlayCount",0) + 1);
+        PlayerPrefs.Save();
         minigameUIManager.ChangeState(UIState.MinigameGame);
         currentScore = 0;
         minigameUIManager.UpdateScore(currentScore);
@@ -71,8 +75,14 @@ public class MinigameManager : MonoBehaviour
     {
         minigameUIManager.UpdateResultScore(currentScore);
         minigameUIManager.UpdateResultBestScore(currentScore, bestScore);
-        minigameUIManager.ChangeState(UIState.MinigameGameOver);
 
+        if (PlayerPrefs.GetInt("CurrentBestScore", 0) < currentScore)
+        {
+            PlayerPrefs.SetInt("CurrentBestScore",currentScore);
+            PlayerPrefs.Save();
+        }
+
+        minigameUIManager.ChangeState(UIState.MinigameGameOver);
     }
     public void RestartGame()
     {
@@ -86,6 +96,8 @@ public class MinigameManager : MonoBehaviour
 
     public void ExitMinigame()
     {
+        PlayerPrefs.SetInt("IsMinigameEnd", 1);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("Overworld");
     }
 }
