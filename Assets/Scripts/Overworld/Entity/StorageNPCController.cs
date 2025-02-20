@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class StorageNPCController : BaseNPCController
 {
-    
+    protected override void OnClickInBasicMassageButton()
+    {
+        base.OnClickInBasicMassageButton();
+        basicMassage.SetActive(false);
+    }
 }

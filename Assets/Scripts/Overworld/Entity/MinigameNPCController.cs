@@ -27,7 +27,7 @@ public class MinigameNPCController : BaseNPCController
         base.OnTriggerExit2D(collision);
         resultMessageObject.SetActive(false);
     }
-    protected override void OnClickInMassageButton()
+    protected override void OnClickInBasicMassageButton()
     {
         PlayerPrefs.SetInt("MinigamePlayCount", 0);
         PlayerPrefs.SetInt("NewBestScore", 0);

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class BaseNPCController : MonoBehaviour
 {
-    [SerializeField]private GameObject messageCanvas;
-    [SerializeField]private GameObject basicMassage;
-    [SerializeField] Button basicMassageButton;
+    [SerializeField]protected GameObject messageCanvas;
+    [SerializeField]protected GameObject basicMassage;
+    [SerializeField]protected Button basicMassageButton;
     Animator animator;
 
     protected virtual void Awake()
@@ -31,13 +31,13 @@ public class BaseNPCController : MonoBehaviour
             messageCanvas.SetActive(false);
     }
 
-    protected virtual void OnCollisionStay2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.CompareTag("Player"))
         {
             basicMassage.SetActive(true);
-            basicMassageButton.onClick.AddListener(OnClickInMassageButton);
+            basicMassageButton.onClick.AddListener(OnClickInBasicMassageButton);
             animator.SetBool("IsTalk", true);
         }
     }
@@ -46,7 +46,7 @@ public class BaseNPCController : MonoBehaviour
         basicMassage.SetActive(false);
         animator.SetBool("IsTalk", false);
     }
-    protected virtual void OnClickInMassageButton()
+    protected virtual void OnClickInBasicMassageButton()
     {
 
     }
