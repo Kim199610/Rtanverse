@@ -20,7 +20,9 @@ public class MinigameManager : MonoBehaviour
     public int currentScore = 0;
     float delayTime = 3f;
     int bestScore;
-    
+
+    public static bool isRestart=false;
+
     private void Awake()
     {
         
@@ -36,7 +38,11 @@ public class MinigameManager : MonoBehaviour
 
     private void Start()
     {
-        
+        if (isRestart)
+        {
+            GameStart();
+            isRestart = false;
+        }
     }
     private void Update()
     {
@@ -86,6 +92,7 @@ public class MinigameManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        isRestart = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void AddScore(int score)
