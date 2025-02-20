@@ -23,7 +23,7 @@ public class OverworldGameManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("IsMinigameEnd") == 1)
         {
-            PlayerController.transform.position = new Vector3(-6.5f, -3f, 0);
+            PlayerController.transform.position = minigameNPC.transform.position + new Vector3(1.5f, 0, 0);
             minigameNPC.resultMessageOn();
 
             PlayerPrefs.SetInt("IsMinigameEnd", 0);
