@@ -28,7 +28,7 @@ public class WeaponHandler : MonoBehaviour
 
     [SerializeField] private float knockbackPower = 0.1f;
     public float KnockbackPower { get => knockbackPower; set => knockbackPower = value; }
-
+    
     [SerializeField] private float knockbackTime = 0.5f;
     public float KnockbackTime { get => knockbackTime; set => knockbackTime = value; }
 
